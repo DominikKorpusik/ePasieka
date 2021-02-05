@@ -27,7 +27,8 @@ moga prowadzić własny terminarz, ułatwiający im pracę.
 - Posiada on również funkcjonalność oznaczania własnych
 pasiek na mapie Google’a, manipulowania nimi oraz wyświetlania ich.
 - Przy każdej pasiece zostaje wyświetlona automatycznie pobrana pogoda na dany dzień.
-- Każdy klient aplikacji tworzy własne konto użytkownika 
+- Każdy klient aplikacji tworzy własne konto użytkownika
+  - Rejestracja, Logowanie, potwierdzenie adresu email, zmiana hasła, edycja danymi użytkownika
 
 ## Technologie
 
@@ -58,6 +59,7 @@ Wykorzystane podczas tworzenia projektu
 - Stworzyć lepszą szatę graficzną, szczególnie dla wyświetlania pogody.
 - Przeprowadzić refaktoryzację
 - Dodać testy
+- Dodać uwierzytelnienie dwuskładnikowe
 
 
 
