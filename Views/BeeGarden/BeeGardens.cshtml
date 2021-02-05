@@ -1,0 +1,51 @@
+﻿@model ViewModel
+
+@{
+    ViewData["Title"] = "Twoje pasieki";
+
+}
+
+@section scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<div class="row">
+    @foreach (var beeG in Model.beeGardens)
+    {
+        <div class="col-lg-4">
+            <div class="my-card">
+                <div class="face face1">
+                    <div class="content">
+                        <h2><a asp-controller="Beehive" asp-action="BeeGardenDetails" asp-route-id="@beeG.beeGardenID">@beeG.name</a></h2>
+                    </div>
+                </div>
+                <div class="face face2">
+                    <div class="content">
+                        <p>
+                            Miejscowość: @beeG.location<br />
+                            @if (beeG.treatmentDate != null)
+                            {
+                                @: Data leczenia: @beeG.treatmentDate.ToShortDateString()<br />
+                            }
+                            @if (beeG.annotation != null)
+                            {
+                                @:Uwagi: @beeG.annotation
+                            }
+                        </p>
+                        <div class="content-buttons">
+                            <a asp-action="DeleteBeeGarden" asp-route-id="@beeG.beeGardenID">Usun</a>
+                            <a asp-action="EditBeeGarden" asp-route-id="@beeG.beeGardenID">Edytuj</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+    <div class="col-lg-4 mb-5 mx-auto my-auto">
+        <div class="justify-content-center">
+            <a class="btn-beeGarden" asp-action="AddBeeGarden">Dodaj nową pasiekę</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@model ePasieka.Models.Beehive
+
+@{
+    ViewData["Title"] = "Usun";
+}
+
+<form asp-action="DeleteBeehive" id="beehive-form">
+    <input type="hidden" asp-for="beeHiveID" />
+    <input type="submit" value="Usuń" class="btn btn-danger" style="display: none;" />
+</form>
+
+
+<script>
+    window.onload = function () {
+        Swal.fire({
+          title: 'Czy na pewno chcesz usunąć?',
+          text: "Nie będzie można przywrócić tych danych!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+            confirmButtonText: 'Tak, usuń to!',
+            cancelButtonText: 'Anuluj',
+          backdrop: `rgba(0,0,0,0.8)`
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire(
+                    'Usunięto!',
+                    'Twój ul został usunięty z bazy.',
+                    'success'
+                ).then(function () {
+                    document.querySelector('#beehive-form').submit();
+                }
+                );
+            } else {
+                window.location = '/Beehive/BeeGardenDetails/@Model.beeGardenID';
+            }
+        })
+    }
+</script>

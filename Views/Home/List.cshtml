@@ -1,0 +1,61 @@
+﻿@model ViewModel
+
+@{
+    ViewData["Title"] = "Lista";
+}
+
+
+@section scripts{
+
+    <partial name="_CalendarPartial.cshtml" />
+}
+
+
+<div class="row">
+    <div class="col-12" style="margin-bottom: 20px;">
+        <h1>Lista wydarzeń</h1>
+        <a class="btn btn-primary" asp-action="Calendar">Kalendarz</a>
+        <a class="btn btn-primary" asp-action="QueenRearing">Wychów matek</a>
+    </div>
+
+    <div class="col-md-12 bgcolor-boot-col">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Opis
+                    </th>
+                    <th>
+                        Rozpoczęcie wydarzenia
+                    </th>
+                    <th>
+                        Zakończenie wydarzenia
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var e in Model.calendarEvents)
+                {
+                    <tr>
+                        <td>
+                            @e.title
+                        </td>
+                        <td>
+                            @e.start
+                        </td>
+                        <td>
+                            @e.end
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" asp-action="EditCalendarEvent" asp-route-id="@e.calendarEventID">Edytuj</a>
+                            <a class="btn btn-danger" asp-action="DeleteCalendarEvent" asp-route-id="@e.calendarEventID">Usuń</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="~/fullcalendar/Calendar.js"></script>

@@ -1,0 +1,54 @@
+﻿@model ViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Witaj!</h1>
+
+<table>
+    <thead>
+        <tr>Zaplanowane na dziś!</tr>
+        <tr>
+            <th>Opis</th>
+            <th>Rozpoczęcie</th>
+            <th>Zakończenie</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model.calendarEvents.Where(e => e.start.Date == Model.DateTimeNow.Date)
+                                               .OrderBy(e => e.start.Date))
+        {
+            <tr>
+                <td>@e.title</td>
+                <td>@e.start</td>
+                <td>@e.end</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+<table>
+    <thead>
+        <tr>Zaplanowane na najbliższy tydzień!</tr>
+        <tr>
+            <th>Opis</th>
+            <th>Rozpoczęcie</th>
+            <th>Zakończenie</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model.calendarEvents.Where(e => e.start.Date >= Model.DateTimeNow.Date
+                                                        && e.start.Date <= Model.DateTimeNow.AddDays(7).Date)
+                                                      .OrderBy(e => e.start.Date))
+        {
+            <tr>
+                <td>@e.title</td>
+                <td>@e.start</td>
+                <td>@e.end</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

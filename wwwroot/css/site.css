@@ -1,0 +1,506 @@
+﻿a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background: hsla(42, 76%, 95%, 1);
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    background: hsla(37, 18%, 100%, 1);
+}
+
+a:link{
+    text-decoration: none;
+}
+
+/* Bootstrap editing bg col color*/
+
+.btn-primary {
+    background: hsla(49, 98%, 50%, .8);
+    border: 1px solid hsla(49, 98%, 50%, .8);
+    color: hsla(0, 0%, 0%, 1);
+}
+
+.btn-primary:hover{
+    background: hsla(47, 98%, 50%, 1);
+    border: 1px solid hsla(47, 98%, 50%, 1);
+    color: hsla(0, 0%, 0%, 1);
+}
+
+.bgcolor-boot-col {
+    padding: 10px 20px 0 20px;
+    background: white;
+    border-radius: 20px;
+}
+
+/* Google maps CSS*/
+
+.googleMap-style {
+    border: 2px solid hsla(49, 98%, 50%, 1);
+    border-radius: 20px;
+    height: 100%;
+}
+
+
+/* Nav */
+nav a.navbar-brand {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 28px;
+    padding: 10px;
+    background: hsla(49, 98%, 50%, 1);
+    border-radius: 50%;
+}
+
+ul.navbar-nav li{
+    margin: 5px;
+}
+
+ul.navbar-nav li:hover{
+    border-bottom: 1px solid black;
+}
+
+
+/* CSS Grid - Home page*/
+/*                     */
+
+main.grid-main{
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas: "main"
+                         "main-articles"
+                         "base";
+}
+
+
+/* .beehive-base */
+main .beehive-base {
+    grid-area: base;
+    background-color: hsla(49, 98%, 50%, 1);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 40px;
+    position: relative;
+}
+
+main .beehive-base:after {
+    content: '';
+    width: 40px;
+    height: 50px;
+    right: 70px;
+    border-radius: 5px;
+    background: hsla(49, 98%, 50%, 1);
+    position: absolute;
+    z-index: -1;
+}
+
+main .beehive-base:before {
+    content: '';
+    width: 40px;
+    height: 50px;
+    left: 70px;
+    border-radius: 5px;
+    background: hsla(49, 98%, 50%, 1);
+    position: absolute;
+    z-index: -1;
+}
+
+
+/* Annimation */
+
+@keyframes roof {
+    0% {
+        opacity: 0;
+        transform: translateY(-300px);
+    }
+    25% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50% {
+        transform-origin: right center;
+        transform: rotate(1deg); 
+    }
+    75%{
+
+    }
+    100% {
+        transform-origin: left center;
+        transform: rotate(-1.2deg);
+    }
+}
+
+
+/* .main-head */
+main .main-head {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-areas: "img-head main-head";
+    background-color: hsla(49, 98%, 50%, 1);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px;
+    position: relative;
+    animation: roof 3s .5s both;
+}
+
+main .main-head:before{
+    content: '';
+    width: 40px;
+    height: 50px;
+    left: -25px;
+    border-radius: 5px;
+    background: hsla(49, 98%, 50%, 1);
+    position: absolute;
+    z-index: -1;
+}
+
+main .main-head:after{
+    content: '';
+    width: 40px;
+    height: 50px;
+    right: -25px;
+    border-radius: 5px;
+    background: hsla(49, 98%, 50%, 1);
+    position: absolute;
+    z-index: -1;
+}
+
+
+main .main-head .main-div{
+    grid-area: main-head;
+}
+
+main .main-head .main-div h1{
+    text-align: center;
+    font-size: 60px;
+}
+
+main .main-head .main-div p{
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Article grid */
+/*              */
+
+main .main-article{
+    grid-area: main-articles;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas: "article1 article-img1"
+                         "article2 article-img2"
+                         "article3 article-img3"
+                         "article4 article-img4";
+    grid-row-gap: 50px;
+
+}
+
+/* .home-article */
+
+main article.home-article {
+    background: hsla(163, 68%, 78%, 1);
+    padding: 10px;
+    border-radius: 15px;
+    border-right: 2px solid hsla(49, 98%, 50%, 1);
+    transition: box-shadow .5s ease-in-out;
+    position: relative;
+}
+
+
+main article.home-article h2{
+    text-align: center;
+    font-size: 24px;
+}
+
+main article.home-article p{
+    column-count: 2;
+    font-size: 18px;
+}
+
+main article.home-article:hover{
+    box-shadow: 0 0 10px 10px rgba(0,0,0,0.25);
+}
+
+main .main-article .home-article:nth-of-type(1) {
+    grid-area: article1;
+}
+
+main .main-article .home-article:nth-of-type(2) {
+    grid-area: article2;
+    background: hsla(163, 68%, 63%, 0.8);
+}
+
+main .main-article .home-article:nth-of-type(3) {
+    grid-area: article3;
+    background: hsla(289, 41%, 68%, 0.8);
+}
+
+main .main-article .home-article:nth-of-type(4) {
+    grid-area: article4;
+    background: hsla(163, 68%, 72%, 1);
+}
+
+/* .article-img */
+
+main .article-img  img{
+    border-radius: 50%;
+    border: 2px solid hsla(49, 98%, 50%, 1);
+    width: 200px;
+    height: 200px;
+}
+
+main .main-article .article-img:nth-of-type(1) {
+    grid-area: article-img1;
+}
+
+main .main-article .article-img:nth-of-type(2) {
+    grid-area: article-img2;
+}
+
+main .main-article .article-img:nth-of-type(3) {
+    grid-area: article-img3;
+}
+
+main .main-article .article-img:nth-of-type(4) {
+    grid-area: article-img4;
+}
+
+
+/* Tabel - beehive*/
+/*                */
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.content-table thead tr{
+    background: #009879;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th, .content-table td{
+    padding: 12px 15px;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid #ddd;
+}
+
+.content-table tbody tr:nth-of-type(even){
+    background: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 2px solid #009879;
+}
+
+.content-table a{
+    text-decoration: none;    
+    font-weight: bold;
+    color: black;
+}
+
+.content-table a:hover{
+    padding-left: 10px;
+    font-weight: bold;
+    color: gray;
+}
+
+/* Cards -  beeGarden */
+/*                    */
+
+.col-lg-4 .my-card {
+    position: relative;
+}
+
+.col-lg-4 .my-card .face{
+    width: 300px;
+    height: 200px;
+    transition: 0.5s;
+}
+
+.col-lg-4 .my-card .face.face1 {
+    position: relative;
+    background: hsla(56, 95%, 56%, 1);
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    z-index: 1;
+    transform: translateY(100px);
+}
+    
+.col-lg-4 .my-card:hover .face.face1 {
+    background: hsla(56, 95%, 56%, 1);
+    transform: translateY(0);
+}
+
+.col-lg-4 .my-card .face.face1 .content{
+    opacity: 0.2;
+    transition: 0.5s;
+
+}
+    
+.col-lg-4 .my-card:hover .face.face1 .content {
+    opacity: 1;
+}
+
+.col-lg-4 .my-card .face.face1 .content h2 a{
+    margin: 10px 0 0;
+    padding: 0;
+    text-align: center;
+    color: gray;
+    font-size: 1.5em;
+    transition: color .2s ease-in-out;
+}
+
+.col-lg-4 .my-card .face.face1 .content h2 a:hover{
+    color: black;
+}
+
+
+.col-lg-4 .my-card .face.face2{
+    position: relative;
+    background: #fff;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    transform: translateY(-100px);
+}
+
+.col-lg-4 .my-card:hover .face.face2{
+    transform: translateY(0px);
+}
+
+
+.col-lg-4 .my-card .face.face2 .content{
+    width: 100%;
+    height: 100%;
+}
+    
+.col-lg-4 .my-card .face.face2 .content {
+    align-content: end;
+    width: 100%;
+}
+
+.col-lg-4 .my-card .face.face2 .content p{
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+    
+.col-lg-4 .my-card .face.face2 .content a,
+.col-lg-4 .my-card .face.face2 .content input[type="submit"]{
+        top: 65%;
+        margin: 15px 0 0;
+        position: absolute;
+        display: inline-block;
+        float: left;
+        text-decoration: none;
+        font-weight: 900;
+        color: #333;
+        padding: 5px;
+        border: 1px solid #333;
+}
+
+.col-lg-4 .my-card .face.face2 .content a:last-child{
+    left: 73%;
+}
+
+.col-lg-4 .my-card .face.face2 .content a:hover {
+    background: #333;
+    color: #fff;    
+}
+
+/* New Bee-garden */
+
+a.btn-beeGarden {
+    margin: 15px 0 0;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 900;
+    color: black;
+    padding: 5px;
+    opacity: 0.8;
+    border: 1px solid #333;
+    transition: all .3s ease-in-out;
+}
+
+a.btn-beeGarden:hover {
+    color:  hsla(49, 98%, 50%, 0.8);
+    border: 1px solid  hsla(49, 98%, 50%, 0.8);
+    opacity: 1;
+}
+

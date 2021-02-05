@@ -1,0 +1,78 @@
+﻿@model ViewModel
+@{
+    ViewBag.Title = "Mapa twoich pasiek";
+}
+
+@section Scripts{
+    <!-- Ładuje mapę -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTyr2nvpITMw8xCpfuRSb4lX_l2i74lfw&callback=myMap"></script>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <h1 class="text-center">Lokalizacja twoich pasiek</h1>
+        <div id="googleMap" class="googleMap-style" style="height: 70vh"></div>
+    </div>
+</div>
+
+<script>
+
+    function myMap() {
+        @if (@Model.beeGardens.Count() != 0)
+        {
+            @: var myCenter = new google.maps.LatLng(@Model.beeGardens.FirstOrDefault().latitude, @Model.beeGardens.FirstOrDefault().longitude);
+            @: var varZoom = 6;
+        }
+        else
+        {
+            @: var myCenter = new google.maps.LatLng(52.065162, 19.252522);
+            @: var varZoom = 6;
+        }
+
+            var mapProp = {
+                center: myCenter,
+                zoom: varZoom,
+                scrollwheel: false,
+                draggable: true,
+                mapTypeControl: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+             @foreach (var p in Model.beeGardens)
+             {
+                @:addMarker(@p.latitude, @p.longitude, "@p.name", "@p.annotation", @p.beeGardenID, map);
+             }
+
+            function addMarker(lat, long, name, annotation, id, map) {
+
+                var mark = new google.maps.LatLng(lat, long);
+                var ann = "<h4> <a href='/Beehive/BeeGardenDetails/"+id+"'>" + name +"</a> </h4>" + "<p>" + annotation + "</p>";
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: ann
+                });
+
+                var marker = new google.maps.Marker({
+                    position: mark,
+                    title: name,
+                    map: map,
+                });
+
+                //Wyświetlenie info
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.open(map, marker);
+                });
+
+                //Przejście do danego markera po jego wciśnięciu
+
+                marker.addListener('click', function () {
+                    map.setZoom(13);
+                    map.panTo(marker.getPosition());
+                });
+            }
+    }
+
+</script>
+

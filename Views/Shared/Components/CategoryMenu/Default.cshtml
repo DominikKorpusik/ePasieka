@@ -1,0 +1,18 @@
+﻿@model ViewModel
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+        Pasieki
+    </a>
+    <div class="dropdown-menu">
+
+        @foreach (var bee in Model.beeGardens)
+        {
+            <a class="dropdown-item" asp-controller="Beehive" asp-action="BeeGardenDetails"
+               asp-route-id="@bee.beeGardenID"> @bee.name </a>
+        }
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" asp-controller="BeeGarden" asp-action="BeeGardens"> Wszystkie </a>
+    </div>
+</li>

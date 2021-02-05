@@ -1,0 +1,37 @@
+﻿@{
+    string st = "https://"+ $"localhost:44375/Beehive/Weather5day3hourResult?id={Model.beeGarden.beeGardenID}";
+}
+
+<script>
+    $(function () {
+        $.ajax({
+            url: "@st",
+            type: "POST",
+            success: function (rsltval) {
+                var data = JSON.parse(rsltval);
+                console.log(data);
+
+                $("#lblCity").html(data[0].city);
+                $("#lblCountry").text(data[0].country);
+                $("#lblLat").text(data[0].lat);
+                $("#lblLon").text(data[0].lon);
+
+                for (var i = data.length - 1; i >= 0; i--) {
+                    $("#lblDescription").text(data[i].description);
+                    $("#lblHumidity").text(data[i].humidity);
+                    $("#lblTempFeelsLike").text(data[i].tempFeelsLike);
+                    $("#lblTemp").text(data[i].temp);
+                    $("#lblTempMax").text(data[i].tempMax);
+                    $("#lblTempMin").text(data[i].tempMin);
+                    $("#lblDateTxt").text(data[i].dt_txt);
+                    $("#imgWeatherIconUrl").attr("src", "http://openweathermap.org/img/w/" + data[i].weatherIcon + ".png");
+                }
+            },
+            error: function () {
+
+            }
+        });
+    });
+
+
+</script> 

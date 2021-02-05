@@ -1,0 +1,55 @@
+﻿@model ViewModel
+
+@{
+    ViewData["Title"] = "Lista uli";
+    Model.beeGardens.ToList();
+}
+
+
+<!-- <div class="border bg-light rounded p-1"> </div>
+-->
+
+
+<div class="row">
+    
+    <div class="col-md-12">
+        <a class="btn btn-block btn-primary" asp-action="AddBeehiveToBeehives">Dodaj Ul</a>
+    </div>
+
+    <div class="col-md-12">
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Pasieka</th>
+                    <th>Ilość miodu</th>
+                    <th>Ilość ramek</th>
+                    <th>Dennica</th>
+                    <th>Rodzaj ula</th>
+                    <th>Rasa pszczół</th>
+                    <th>Przegląd (data)</th>
+                    <th>Wymiana matki</th>
+                    <th>Skala</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var beehive in Model.beehives)
+                {
+                    <tr>
+                        <td><a asp-action="BeeGardenDetails" asp-route-id="@beehive.beeGardenID">@beehive.beeGarden.name</a></td>
+                        <td>@beehive.honeyAmount kg</td>
+                        <td>@beehive.framesAmount</td>
+                        <td>@beehive.botttomBoard</td>
+                        <td>@beehive.beehiveType</td>
+                        <td>@beehive.breed</td>
+                        <td>@beehive.inspectionDate.ToShortDateString()</td>
+                        <td>@beehive.queenExchangeDate.ToShortDateString()</td>
+                        <td>@beehive.scale</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+

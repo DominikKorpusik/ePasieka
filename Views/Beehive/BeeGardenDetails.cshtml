@@ -1,0 +1,148 @@
+﻿@model ViewModel
+
+@{
+    ViewData["Title"] = "Lista pasiek";
+}
+
+@section scripts{
+    <partial name="_WeatherJSPartial.cshtml" />
+}
+
+@Model.DateTimeNow.ToString()
+
+<!-- WEATHER - START -->
+<div>
+    <h2>Weather Forecast</h2>
+    <table>
+        <tr>
+            <td>Weather Symbol Icon <img id="imgWeatherIconUrl" src="" title="Weather Icon" /></td>
+        </tr>
+        <tr>
+            <td>
+                <strong>City: </strong>
+                <span id="lblCity"></span>  ,
+                <span id="lblCountry"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Latitude: </strong>
+                <label id="lblLat"></label><br />
+                <strong>Longitude: </strong>
+                <label id="lblLon"></label>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Description:</strong>
+                <label id="lblDescription"></label><br />
+                <strong>Humidity:</strong>
+                <label id="lblHumidity"></label><br />
+                <strong>Date:</strong>
+                <label id="lblDateTxt"></label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Temperature (Feels Like)<label id="lblTempFeelsLike"></label>°C<br />
+                Temperature <label id="lblTemp"></label>°C<br />
+                Temperature (Min)<label id="lblTempMin"></label>°C<br />
+                Temperature (Max)<label id="lblTempMax"></label>°C<br />
+            </td>
+        </tr>
+
+
+    </table>
+</div>
+
+<!-- WEATHER - END -->
+
+<hr />
+
+<div class="row">
+    <div class="col-8">
+        <h1>Pasieka: @Model.beeGarden.name</h1>
+        <h1>Ule:  @Model.beehives.Count()</h1>
+    </div>
+    <div class="col-4">
+        <a class="btn btn-block btn-primary" asp-action="AddBeehive" asp-route-id="@Model.beeGarden.beeGardenID">Dodaj nowy ul</a>
+        <a class="btn btn-block btn-primary"
+           asp-controller="Nucs"
+           asp-action="AddNuc"
+           asp-route-id="@Model.beeGarden.beeGardenID">Dodaj nowy odkład</a>
+
+    </div>
+</div>
+
+<hr />
+
+<form asp-action="DeleteChoosed" method="post">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>Ilość miodu</th>
+                        <th>Ilość ramek</th>
+                        <th>Dennica</th>
+                        <th>Rodzaj ula</th>
+                        <th>Rasa pszczół</th>
+                        <th>Przegląd (data)</th>
+                        <th>Wymiana matki</th>
+                        <th>Ocena</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var beehive in Model.beehives)
+                    {
+                        <tr>
+                            <td>@beehive.name</td>
+                            <td>@beehive.honeyAmount kg</td>
+                            <td>@beehive.framesAmount</td>
+                            <td>@beehive.botttomBoard</td>
+                            <td>@beehive.beehiveType</td>
+                            <td>@beehive.breed</td>
+                            <td>@beehive.inspectionDate.ToShortDateString()</td>
+                            <td>@beehive.queenExchangeDate.ToShortDateString()</td>
+                            <td>@beehive.scale</td>
+                            <td>
+                                <a class="btn btn-danger" asp-action="DeleteBeehive" asp-route-id="@beehive.beeHiveID">Usun</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" asp-action="EditBeehive" asp-route-id="@beehive.beeHiveID">Edytuj</a>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</form>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="justify-content-center">
+            <a class="btn btn-block btn-primary" asp-action="AddBeehive" asp-route-id="@Model.beeGarden.beeGardenID">Dodaj nowy ul</a>
+        </div>
+    </div>
+</div>
+

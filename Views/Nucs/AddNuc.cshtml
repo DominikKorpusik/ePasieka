@@ -1,0 +1,53 @@
+﻿@model ViewModel
+@{
+    ViewData["Title"] = "Dodaj nowy odkład";
+    var now = Model.DateTimeNow.ToString("yyyy-MM-dd");
+}
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+<div class="row">
+    <div class="col-md-6 bgcolor-boot-col mx-auto my-auto">
+        <h3 class="text-center">Nowy odkład (@Model.beeGarden.name)</h3>
+
+        <form asp-action="AddNuc" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nuc.name" class="control-label">Nazwa</label>
+                <input asp-for="nuc.name" class="form-control" />
+                <span asp-validation-for="nuc.name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nuc.framesAmount" class="control-label">Liczba ramek</label>
+                <input asp-for="nuc.framesAmount" type="number" min="0" class="form-control" />
+                <span asp-validation-for="nuc.framesAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nuc.framesAmount" class="control-label">Siła ula (Skala 1-10)</label>
+                <input asp-for="nuc.scale" type="number" min="0" max="10" class="form-control" />
+                <span asp-validation-for="nuc.scale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nuc.inspectionDate" class="control-label">Dzień przeglądu</label>
+                <input asp-for="nuc.inspectionDate" type="date" value="@now" min="2000-01-01" max="2200-01-01" class="form-control" />
+                <span asp-validation-for="nuc.scale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nuc.inspectionDate" class="control-label">Uwagi</label>
+                <textarea asp-for="nuc.inspectionDate" rows="3" class="form-control"> </textarea>
+                <span asp-validation-for="nuc.annotation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="nuc.beeGardenID" value="@Model.beeGarden.beeGardenID" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-primary" style="width: 50%"/>
+                <a class="btn btn-primary float-right" style="margin-left: 10px" asp-action="Nucs">Lista odkładów</a>
+                <a class="btn btn-primary float-right" asp-controller="Beehive" asp-action="BeeGardenDetails" asp-route-id="@Model.beeGarden.beeGardenID">Powrót</a>
+            </div>
+        </form>
+    </div>
+</div>
+

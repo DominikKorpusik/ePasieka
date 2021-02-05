@@ -1,0 +1,47 @@
+﻿@model ViewModel
+
+@{
+    ViewData["Title"] = "Odkłady";
+    Model.beeGardens.ToList();
+}
+
+<h1 class="text-center"> Odkłady</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-block btn-primary" asp-action="AddNucToNucs">Dodaj odkład</a>
+    </div>
+
+    <div class="col-md-12">
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Pasieka</th>
+                    <th>Ilość ramek</th>
+                    <th>Przegląd (data)</th>
+                    <th>Siła (skala 1-10)</th>
+                    <th>Uwagi</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var nuc in Model.nucs)
+                {
+                    <tr>
+                        <td><a asp-controller="Beehive" asp-action="BeeGardenDetails" asp-route-id="@nuc.beeGardenID">@nuc.beeGarden.name</a></td>
+                        <td>@nuc.framesAmount</td>
+                        <td>@nuc.inspectionDate.ToShortDateString()</td>
+                        <td>@nuc.scale</td>
+                        <td>@nuc.annotation</td>
+                        <td><a class="btn btn-danger" asp-action="DeleteNuc" asp-route-id="@nuc.nucID">Usun</a></td>
+                        <td><a class="btn btn-primary" asp-action="EditNuc" asp-route-id="@nuc.nucID">Edytuj</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

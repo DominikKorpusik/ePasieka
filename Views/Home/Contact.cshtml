@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Kontakt";
+}
+
+
+<style>
+    .contact-con{
+        position: relative;
+        padding: 50px;
+        background: white;
+        border: 2px solid hsla(49, 98%, 50%, 1);
+        border-radius: 30%;
+    }
+
+    div.table-in-contact{
+        position: relative;
+        left: 35%;
+    }
+
+    .contact-con h2{
+        text-align: center
+    }
+
+    table.contact-table{
+        font-size: 24px;
+        position: relative;
+    }
+
+    table.contact-table td{
+        padding: 5px;
+        text-align: right;
+    }
+
+    table.contact-table td.i-center{
+        text-align: center;
+    }
+
+</style>
+
+    <div class="contact-con">
+        <h2> Chcesz się z nami skontaktować? </h2>
+        <div class="table-in-contact">
+            <table class="contact-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="i-center">
+                            <i class="fas fa-at "></i>
+                        </td>
+                        <td>
+                            E-mail <i class="fas fa-angle-double-right"></i>
+                        </td>
+                        <td>
+                            <Email address="ePasieka.DK@gmail.com" annotation="Kliknij mnie!"></Email>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="i-center">
+                            <i class="fas fa-mobile-alt"></i>
+                        </td>
+                        <td>
+                            Telefon <i class="fas fa-angle-double-right"></i>
+                        </td>
+                        <td>
+                            999 999 999
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

@@ -1,0 +1,40 @@
+﻿@model ePasieka.Models.CalendarEvent
+
+@{
+    ViewData["Title"] = "Na pewno?";
+}
+
+<form asp-action="DeleteCalendarEvent" id="calendarDelete-form">
+    <input type="hidden" asp-for="calendarEventID" />
+    <input type="submit" value="Usuń" class="btn btn-danger" style="display: none;" />
+</form>
+
+
+<script>
+    window.onload = function () {
+        Swal.fire({
+          title: 'Czy na pewno chcesz usunąć?',
+          text: "Nie będzie można przywrócić tych danych!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+            confirmButtonText: 'Tak, usuń to!',
+            cancelButtonText: 'Anuluj',
+          backdrop: `rgba(0,0,0,0.8)`
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire(
+                    'Usunięto!',
+                    'Twoje zadanie zostało usunięte z bazy.',
+                    'success'
+                ).then(function () {
+                    document.querySelector('#calendarDelete-form').submit();
+                }
+                );
+            } else {
+                window.location = '/Home/List';
+            }
+        })
+    }
+</script>

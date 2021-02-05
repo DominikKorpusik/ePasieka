@@ -1,0 +1,139 @@
+﻿@model ePasieka.Models.BeeGarden
+
+@{
+    ViewData["Title"] = "Edytuj pasiekę";
+}
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <!-- Ładuje mapę -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTyr2nvpITMw8xCpfuRSb4lX_l2i74lfw&callback=editMap"></script>
+}
+<div class="row">
+    <div class="col-md-4 bgcolor-boot-col">
+        <form asp-action="EditBeeGarden" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="beeGardenID" />
+            <input type="hidden" asp-for="userID" />
+            <div class="form-group">
+                <label asp-for="name" class="control-label">Nazwa</label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="location" class="control-label">Miejscowość</label>
+                <input asp-for="location" class="form-control" />
+                <span asp-validation-for="location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="latitude" class="control-label">Szerokość geograficzna</label>
+                <input asp-for="latitude" class="form-control" id="latID" />
+                <span asp-validation-for="latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="longitude" class="control-label">Długość geograficzna</label>
+                <input asp-for="longitude" class="form-control" id="longID" />
+                <span asp-validation-for="longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="treatmentDate" class="control-label">Data ostatniego leczenia</label>
+                <input asp-for="treatmentDate" min="2000-01-01" max="2200-01-01" class="form-control" />
+                <span asp-validation-for="treatmentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="annotation" class="control-label">Uwagi</label>
+                <textarea asp-for="annotation" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="annotation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Zapisz" class="btn btn-primary" style="width: 48%"/>
+                <a class="btn btn-primary float-right" asp-action="BeeGardens" style="width: 48%">Powrót</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-8">
+
+        <!-- Kontener w którym jest mapa -->
+        <div id="googleMap" class="googleMap-style"></div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+    function editMap() {
+
+        var markersArray = [];
+
+        var myCenter = new google.maps.LatLng(@Model.latitude, @Model.longitude);
+        var mapProp = {
+            center: myCenter,
+            zoom: 12,
+            scrollwheel: false,
+            draggable: true,
+            streetViewControl: false,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+        var marker = new google.maps.Marker({
+            position: myCenter,
+                title: "Stara pozycja",
+                map: map
+        });
+
+          //Przesyłanie danych do formularza
+
+        const lati = document.getElementById("latID");
+        const longi = document.getElementById("longID");
+
+        map.addListener('click', function (e) {
+            lati.value = e.latLng.lat();
+            longi.value = e.latLng.lng();
+        });
+
+        var ann = '<h2> Stary znacznik </h2>';
+
+
+        var infowindow = new google.maps.InfoWindow({
+            content: ann
+        });
+
+        google.maps.event.addListener(marker, 'click', function () {
+            infowindow.open(map, marker);
+        });
+
+
+        //Funkcja czyszcząca znaczniki z mapy
+
+        function clearOverlays() {
+            for (var i = 0; i < markersArray.length; i++) {
+                markersArray[i].setMap(null);
+            }
+            markersArray.length = 0;
+        }
+
+        function placeMarkerAndPanTo(latLng, map) {
+            clearOverlays();
+            var icon = 'http://maps.google.com/mapfiles/kml/paddle/N.png';
+            var name = "Nowa pozycja"
+            var marker = new google.maps.Marker({
+                position: latLng,
+                title: name,
+                map: map,
+                icon: icon
+            });
+            markersArray.push(marker);
+            map.panTo(latLng);
+        }
+
+        map.addListener('click', function (e) {
+            placeMarkerAndPanTo(e.latLng, map);
+        });
+
+    }
+
+</script>

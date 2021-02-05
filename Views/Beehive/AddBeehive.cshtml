@@ -1,0 +1,93 @@
+﻿@model ViewModel
+
+@{
+    ViewData["Title"] = "Dodaj Ul";
+    var now = Model.DateTimeNow.ToString("yyyy-MM-dd");
+}
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<h2 class="text-center">Dodaj nowy ul (@Model.beeGarden.name)</h2>
+
+
+<form asp-action="AddBeehive" method="post">
+
+    <div class="row">
+        <div class="col-md-12 bgcolor-boot-col">
+            <div class="form-group">
+                <label for="howMany" class="control-label">Ile kopi danego ula stworzyć?</label>
+                <input type="number" id="howMany" name="howMany" min="1" value="1" class="form-control" />
+            </div>
+        </div>
+            <div class="col-md-6 bgcolor-boot-col">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="beehive.name" class="control-label">Przedrostek</label>
+                    <input asp-for="beehive.name" class="form-control" />
+                    <span asp-validation-for="beehive.name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="beehive.framesAmount" class="control-label">Liczba ramek</label>
+                    <input asp-for="beehive.framesAmount" type="number" class="form-control" />
+                    <span asp-validation-for="beehive.framesAmount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="beehive.scale" class="control-label">Siła ula (Skala 1- 10)</label>
+                    <input asp-for="beehive.scale" min="1" max="10" class="form-control" />
+                    <span asp-validation-for="beehive.scale" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="beehive.inspectionDate" class="control-label">Dzień przeglądu</label>
+                    <input asp-for="beehive.inspectionDate" type="date" min="2000-01-01" max="2200-01-01" value="@now" class="form-control" />
+                    <span asp-validation-for="beehive.inspectionDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="beehive.queenExchangeDate" class="control-label">Wymiana matki</label>
+                    <input asp-for="beehive.queenExchangeDate" type="date" min="2000-01-01" max="2200-01-01" value="@now" class="form-control" />
+                    <span asp-validation-for="beehive.queenExchangeDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="beehive.botttomBoard" class="control-label">Dennica</label>
+                    <select asp-for="beehive.botttomBoard" class="custom-select">
+                        <option value="Osiatkowana">Osiatkowana</option>
+                        <option value="Pełna">Pełna</option>
+                        <option value="Inna">Inna</option>
+                    </select>
+                    <span asp-validation-for="beehive.botttomBoard" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 bgcolor-boot-col">
+
+                <div class="form-group">
+                    <label asp-for="beehive.breed" class="control-label">Rasa pszczół</label>
+                    <input asp-for="beehive.breed" class="form-control" />
+                    <span asp-validation-for="beehive.breed" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="beehive.annotation" class="control-label">Uwagi</label>
+                    <textarea asp-for="beehive.annotation" rows="6" class="form-control"></textarea>
+                    <span asp-validation-for="beehive.annotation" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="beehive.beehiveType" class="control-label">Rodzaj ula</label>
+                    <input asp-for="beehive.beehiveType" class="form-control" />
+                    <span asp-validation-for="beehive.beehiveType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="beehive.honeyAmount" class="control-label">Ilość zebranego miodu (kg)</label>
+                    <input asp-for="beehive.honeyAmount" type="number" value="0" min="0" class="form-control" />
+                    <span asp-validation-for="beehive.honeyAmount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="beehive.beeGardenID" value="@Model.beeGarden.beeGardenID" />
+                    <input type="submit" value="Utwórz" class="btn btn-primary" style="width: 48%" />
+                    <a class="btn btn-primary float-right" asp-action="BeeGardenDetails" asp-route-id="@Model.beeGarden.beeGardenID" style="width: 48%">Powrót</a>
+                </div>
+
+            </div>
+        </div>
+</form>

@@ -1,0 +1,48 @@
+﻿<!-- Navigation -->
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ePasieka</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+    <ul class="navbar-nav flex-grow-1 mr-auto">
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="UserProfile" asp-action="Index"> Profil </a>
+            </li>
+
+            @await Component.InvokeAsync("CategoryMenu")
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Beehive" asp-action="Beehives"> Ule </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Nucs" asp-action="Nucs"> Odkłady</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="GoogleMaps" asp-action="Index"> Mapa </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Home" asp-action="Calendar"> Kalendarz </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Home" asp-action="QueenRearing"> Wychów Matek </a>
+            </li>
+
+        }
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="AboutMe" asp-action="AboutMePage"> O mnie </a>
+        </li>
+    </ul>
+
+</div>
