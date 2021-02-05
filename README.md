@@ -20,13 +20,13 @@ przy użyciu przyjaznego dla użytkownika interfejsu graficznego.
 
 - Program umożliwia pszczelarzom utworzenie własnej bazy
 zawierającej informacje o ich pasiekach, ulach, odkładach i rodzinach pszczelich, datach
-przeprowadzanych inspekcji czy też wizyt weterynaryjnych.
+przeprowadzanych inspekcji czy też wizyt weterynaryjnych
 - Daje możliwość zarządzania wbudowanym kalendarzem, w którym pszczelarze
-moga prowadzić własny terminarz, ułatwiający im pracę.
-- Tworzy przykładowy kalendarz wychowu matek pszczelich.
+moga prowadzić własny terminarz, ułatwiający im pracę
+- Tworzy przykładowy kalendarz wychowu matek pszczelich
 - Posiada on również funkcjonalność oznaczania własnych
-pasiek na mapie Google’a, manipulowania nimi oraz wyświetlania ich.
-- Przy każdej pasiece zostaje wyświetlona automatycznie pobrana pogoda na dany dzień.
+pasiek na mapie Google’a, manipulowania nimi oraz wyświetlania ich
+- Przy każdej pasiece zostaje wyświetlona automatycznie pobrana pogoda na dany dzień
 - Każdy klient aplikacji tworzy własne konto użytkownika
   - Rejestracja, Logowanie, potwierdzenie adresu email, zmiana hasła, edycja danymi użytkownika
 
