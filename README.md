@@ -19,7 +19,7 @@ przy użyciu przyjaznego dla użytkownika interfejsu graficznego.
 ## Funkcjonalności
 
 - Program umożliwia pszczelarzom utworzenie własnej bazy
-zawierającej informacje o ich pasiekach, ulach, rodzinach pszczelich, datach
+zawierającej informacje o ich pasiekach, ulach, odkładach i rodzinach pszczelich, datach
 przeprowadzanych inspekcji czy też wizyt weterynaryjnych.
 - Daje możliwość zarządzania wbudowanym kalendarzem, w którym pszczelarze
 moga prowadzić własny terminarz, ułatwiający im pracę.
