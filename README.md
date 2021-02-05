@@ -59,9 +59,6 @@ Wykorzystane podczas tworzenia projektu
 - Przeprowadzić refaktoryzację
 - Dodać testy
 
-## Aplikacja - Widok
-
-![
 
 
 
